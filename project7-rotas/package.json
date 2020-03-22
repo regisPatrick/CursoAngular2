@@ -23,6 +23,7 @@
     "jquery": "^2.2.4",
     "materialize-css": "^1.0.0",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
