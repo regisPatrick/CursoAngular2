@@ -3,8 +3,6 @@
         <!-- [class.has-error]="!nome.valid && nome.touched"
         [class.has-feedback]="!nome.valid && nome.touched" -->
         
-        
-
         <div class="col-sm-12">
             <label for="nome" class="control-label">Nome</label>
         </div>
@@ -51,7 +49,8 @@
             <label for="cep" class="control-label">CEP</label>
         </div>    
         <div [ngClass]="aplicaCssErro(cep)">    
-            <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel" />
+            <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel" 
+            (blur)="consultaCEP($event.target.value)"/>
             <app-campo-control-erro 
                 [mostrarErro]="verificaValidTouched(cep)" 
                 msgErro="CEP é obrigatório.">
