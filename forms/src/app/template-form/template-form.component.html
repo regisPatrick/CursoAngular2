@@ -50,7 +50,7 @@
         </div>    
         <div [ngClass]="aplicaCssErro(cep)">    
             <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel" 
-            (blur)="consultaCEP($event.target.value)"/>
+            (blur)="consultaCEP($event.target.value, f)"/>
             <app-campo-control-erro 
                 [mostrarErro]="verificaValidTouched(cep)" 
                 msgErro="CEP é obrigatório.">
@@ -86,7 +86,7 @@
         </div>
 
         <div class="col-sm-12">
-            <input type="text" class="form-control" name="rua" id="rua" [ngModel]="usuario.rua" required #rua="ngModel"/>
+            <input type="text" class="form-control" name="rua" id="rua" ngModel required #rua="ngModel"/>
             <app-campo-control-erro 
                 [mostrarErro]="verificaValidTouched(rua)" 
                 msgErro="Rua é obrigatório.">
