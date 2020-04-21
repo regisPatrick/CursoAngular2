@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -24,14 +24,14 @@ export class DataFormComponent implements OnInit {
     });*/
 
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      email: [null, [Validators.required, Validators.email]]
     });
-
+      // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
   }
 
   onSubmit(){
-    console.log(this.formulario.value);
+    console.log(this.formulario);
 
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
       // .map(res => res)
