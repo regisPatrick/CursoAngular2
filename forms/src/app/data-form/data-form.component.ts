@@ -84,4 +84,71 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  consultaCEP(){
+
+    let cep = this.formulario.get('endereco.cep').value;
+    // console.log(cep);
+    // Nova variável "cep" somente com dígitos.
+    cep = cep.replace(/\D/g, '');
+    // Verifica se campo cep possui valor informado.
+    if (cep != ""){
+      // Expressão regular para validar o CEP.
+      var validacep = /^[0-9]{8}$/;
+      // Valida formato do CEP.
+      if (validacep.test(cep)){
+
+        this.resetaDadosForm();
+
+        this.http.get(`//viacep.com.br/ws/${cep}/json`)
+          // .map(dados => dados.json())
+          // .subscribe(dados => console.log(dados));
+          .subscribe(dados => { this.populaDadosForm(dados); });
+      }
+    }
+  }
+
+  populaDadosForm(dados){
+    /*formulario.setValue({
+      nome: formulario.value.nome,
+      email: formulario.value.email,
+        endereco: {
+          cep: dados.cep,
+           numero: '',
+           complemento: dados.complemento,
+           rua: dados.logradouro,
+           bairro: dados.bairro,
+           cidade: dados.localidade,
+           estado: dados.uf
+        }   
+    });*/
+
+    this.formulario.patchValue({
+      endereco: {
+        // cep: dados.cep,
+         complemento: dados.complemento,
+         rua: dados.logradouro,
+         bairro: dados.bairro,
+         cidade: dados.localidade,
+         estado: dados.uf
+      }
+    });
+
+    // this.formulario.get('nome').setValue('Regis');
+
+    // console.log(form);
+  }
+
+  resetaDadosForm(){
+    this.formulario.patchValue({
+      endereco: {
+        // cep: dados.cep,
+         complemento: null,
+         rua: null,
+         bairro: null,
+         cidade: null,
+         estado: null
+      }
+    });  
+  }
+
 }
