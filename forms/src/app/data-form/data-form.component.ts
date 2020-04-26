@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-data-form',
@@ -42,60 +42,80 @@ export class DataFormComponent implements OnInit {
         estado: [null, Validators.required]
       })
     });
-      // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
+    // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.formulario);
 
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-      // .map(res => res)
-      .subscribe(dados => {
-        console.log(dados);
-        // Reseta o form
-        // this.formulario.reset();
-        this.resetar();
-      },
-      (error: any) => alert('erro'));    
+    if (this.formulario.valid) {
+
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+        // .map(res => res)
+        .subscribe(dados => {
+          console.log(dados);
+          // Reseta o form
+          // this.formulario.reset();
+          this.resetar();
+        },
+          (error: any) => alert('erro'));
+
+    } else {
+      console.log('formulário inválido');
+      this.verificaValidacoesForm(this.formulario);
+    }
+
   }
 
-  resetar(){
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo);
+      const controle = formGroup.get(campo);
+      // console.log(controle);
+      controle.markAsTouched();
+      if(controle instanceof FormGroup){
+        this.verificaValidacoesForm(controle);
+      }
+    });
+  }
+
+  resetar() {
     this.formulario.reset();
   }
 
-  verificaValidTouched(campo: string){
+  verificaValidTouched(campo: string) {
 
     return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
 
   }
 
-  verificaEmailInvalido(){
+  verificaEmailInvalido() {
     let campoEmail = this.formulario.get('email');
-    if (campoEmail.errors){
+    if (campoEmail.errors) {
       // return campoEmail.errors['email'] && campoEmail.touched;
       return campoEmail.errors.required && campoEmail.touched;
     }
   }
 
-  aplicaCssErro(campo: string){
+  aplicaCssErro(campo: string) {
     return {
       'has-error': this.verificaValidTouched(campo),
       'has-feedback': this.verificaValidTouched(campo)
     }
   }
 
-  consultaCEP(){
+  consultaCEP() {
 
     let cep = this.formulario.get('endereco.cep').value;
     // console.log(cep);
     // Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
     // Verifica se campo cep possui valor informado.
-    if (cep != ""){
+    if (cep != "") {
       // Expressão regular para validar o CEP.
       var validacep = /^[0-9]{8}$/;
       // Valida formato do CEP.
-      if (validacep.test(cep)){
+      if (validacep.test(cep)) {
 
         this.resetaDadosForm();
 
@@ -107,7 +127,7 @@ export class DataFormComponent implements OnInit {
     }
   }
 
-  populaDadosForm(dados){
+  populaDadosForm(dados) {
     /*formulario.setValue({
       nome: formulario.value.nome,
       email: formulario.value.email,
@@ -125,11 +145,11 @@ export class DataFormComponent implements OnInit {
     this.formulario.patchValue({
       endereco: {
         // cep: dados.cep,
-         complemento: dados.complemento,
-         rua: dados.logradouro,
-         bairro: dados.bairro,
-         cidade: dados.localidade,
-         estado: dados.uf
+        complemento: dados.complemento,
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
       }
     });
 
@@ -138,17 +158,17 @@ export class DataFormComponent implements OnInit {
     // console.log(form);
   }
 
-  resetaDadosForm(){
+  resetaDadosForm() {
     this.formulario.patchValue({
       endereco: {
         // cep: dados.cep,
-         complemento: null,
-         rua: null,
-         bairro: null,
-         cidade: null,
-         estado: null
+        complemento: null,
+        rua: null,
+        bairro: null,
+        cidade: null,
+        estado: null
       }
-    });  
+    });
   }
 
 }

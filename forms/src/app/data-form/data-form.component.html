@@ -43,7 +43,7 @@
     <div class="form-group">
 
       <div class="col-md-3">      
-        <div>
+        <div [ngClass]="aplicaCssErro('endereco.cep')">
             <label for="cep" class="control-label">CEP</label>
         </div>    
         <div [ngClass]="aplicaCssErro('endereco.cep')">    
@@ -136,6 +136,7 @@
 
     </div>
 
+    <!-- <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Submit</button> -->
     <button type="submit" class="btn btn-primary">Submit</button>
     <button class="btn" (click)="resetar()">Cancelar</button>
 
