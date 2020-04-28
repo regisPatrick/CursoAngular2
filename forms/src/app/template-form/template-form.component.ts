@@ -49,24 +49,34 @@ export class TemplateFormComponent implements OnInit {
     }
   }
 
+  // consultaCEP(cep, form){
+  //   // console.log(cep);
+  //   // Nova variável "cep" somente com dígitos.
+  //   cep = cep.replace(/\D/g, '');
+  //   // Verifica se campo cep possui valor informado.
+  //   if (cep != ""){
+  //     // Expressão regular para validar o CEP.
+  //     var validacep = /^[0-9]{8}$/;
+  //     // Valida formato do CEP.
+  //     if (validacep.test(cep)){
+
+  //       this.resetaDadosForm(form);
+
+  //       this.http.get(`//viacep.com.br/ws/${cep}/json`)
+  //         // .map(dados => dados.json())
+  //         // .subscribe(dados => console.log(dados));
+  //         .subscribe(dados => { this.populaDadosForm(dados, form); });
+  //     }
+  //   }
+  // }
+
   consultaCEP(cep, form){
-    // console.log(cep);
     // Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
-    // Verifica se campo cep possui valor informado.
-    if (cep != ""){
-      // Expressão regular para validar o CEP.
-      var validacep = /^[0-9]{8}$/;
-      // Valida formato do CEP.
-      if (validacep.test(cep)){
 
-        this.resetaDadosForm(form);
-
-        this.http.get(`//viacep.com.br/ws/${cep}/json`)
-          // .map(dados => dados.json())
-          // .subscribe(dados => console.log(dados));
-          .subscribe(dados => { this.populaDadosForm(dados, form); });
-      }
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCEP(cep)
+        .subscribe(dados => this.populaDadosForm(dados, form));
     }
   }
 

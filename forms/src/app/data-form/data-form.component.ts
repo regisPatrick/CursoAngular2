@@ -26,7 +26,7 @@ export class DataFormComponent implements OnInit {
   ngOnInit() {
 
     this.dropdownService.getEstadosBR()
-      .subscribe(dados => {this.estados = dados; console.log(dados);});
+      .subscribe(dados => { this.estados = dados; console.log(dados); });
 
     /*this.formulario = new FormGroup({
       nome: new FormControl(null),
@@ -83,7 +83,7 @@ export class DataFormComponent implements OnInit {
       const controle = formGroup.get(campo);
       // console.log(controle);
       controle.markAsTouched();
-      if(controle instanceof FormGroup){
+      if (controle instanceof FormGroup) {
         this.verificaValidacoesForm(controle);
       }
     });
@@ -114,26 +114,36 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  // consultaCEP() {
+
+  //   let cep = this.formulario.get('endereco.cep').value;
+  //   // console.log(cep);
+  //   // Nova variável "cep" somente com dígitos.
+  //   cep = cep.replace(/\D/g, '');
+  //   // Verifica se campo cep possui valor informado.
+  //   if (cep != "") {
+  //     // Expressão regular para validar o CEP.
+  //     var validacep = /^[0-9]{8}$/;
+  //     // Valida formato do CEP.
+  //     if (validacep.test(cep)) {
+
+  //       this.resetaDadosForm();
+
+  //       this.http.get(`//viacep.com.br/ws/${cep}/json`)
+  //         // .map(dados => dados.json())
+  //         // .subscribe(dados => console.log(dados));
+  //         .subscribe(dados => { this.populaDadosForm(dados); });
+  //     }
+  //   }
+  // }
+
   consultaCEP() {
 
     let cep = this.formulario.get('endereco.cep').value;
-    // console.log(cep);
-    // Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-    // Verifica se campo cep possui valor informado.
-    if (cep != "") {
-      // Expressão regular para validar o CEP.
-      var validacep = /^[0-9]{8}$/;
-      // Valida formato do CEP.
-      if (validacep.test(cep)) {
 
-        this.resetaDadosForm();
-
-        this.http.get(`//viacep.com.br/ws/${cep}/json`)
-          // .map(dados => dados.json())
-          // .subscribe(dados => console.log(dados));
-          .subscribe(dados => { this.populaDadosForm(dados); });
-      }
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCEP(cep)
+        .subscribe(dados => this.populaDadosForm(dados));
     }
   }
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 
 @Injectable({
@@ -22,6 +23,7 @@ export class ConsultaCepService {
         return this.http.get(`//viacep.com.br/ws/${cep}/json`)
       }
     }
+    return of ({});
   }
 
 }
