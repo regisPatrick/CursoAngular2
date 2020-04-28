@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 // import 'rxjs/add/operator/map';
 
+import { ConsultaCepService } from '../shared/services/consulta-cep.service';
+
 @Component({
   selector: 'app-template-form',
   templateUrl: './template-form.component.html',
@@ -28,7 +30,10 @@ export class TemplateFormComponent implements OnInit {
 
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private cepService: ConsultaCepService
+    ) { }
 
   ngOnInit() {
   }
