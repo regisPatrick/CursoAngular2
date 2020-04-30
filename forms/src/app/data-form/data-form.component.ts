@@ -16,7 +16,8 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
   // estados: EstadoBr[];
-  estados: Observable<EstadoBr[]>
+  estados: Observable<EstadoBr[]>;
+  cargos: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +29,8 @@ export class DataFormComponent implements OnInit {
   ngOnInit() {
 
     this.estados = this.dropdownService.getEstadosBR();
+
+    this.cargos = this.dropdownService.getCargos();
 
     /*this.dropdownService.getEstadosBR()
       .subscribe(dados => { this.estados = dados; console.log(dados); });*/
@@ -54,7 +57,9 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required]
-      })
+      }),
+
+      cargo: [null]
     });
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
   }
@@ -193,6 +198,11 @@ export class DataFormComponent implements OnInit {
         estado: null
       }
     });
+  }
+
+  setarCargo(){
+    const cargo = { nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl' };
+    this.formulario.get('cargo').setValue(cargo);
   }
 
 }
