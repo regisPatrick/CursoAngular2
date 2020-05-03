@@ -67,7 +67,8 @@ export class DataFormComponent implements OnInit {
 
       cargo: [null],
       tecnologias: [null],
-      newsletter: ['s']
+      newsletter: ['s'],
+      termos: [null, Validators.pattern('true')]
     });
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
   }
@@ -112,7 +113,10 @@ export class DataFormComponent implements OnInit {
 
   verificaValidTouched(campo: string) {
 
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+    return( 
+    !this.formulario.get(campo).valid && 
+    (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+    );
 
   }
 
