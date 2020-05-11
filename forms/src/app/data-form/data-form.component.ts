@@ -1,8 +1,8 @@
-import { map } from 'rxjs/operators';
+import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 
 import { DropdownService } from '../shared/services/dropdown.service';
 import { EstadoBr } from '../shared/models/estado-br.model';
@@ -79,6 +79,18 @@ export class DataFormComponent implements OnInit {
       termos: [null, Validators.pattern('true')],
       frameworks: this.buildFrameworks()
     });
+
+    this.formulario.get('endereco.cep').statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap(value => console.log('status do CEP: ', value)),
+        switchMap(status => status === 'VALID' ? 
+          this.cepService.consultaCEP(this.formulario.get('endereco.cep').value)
+          : empty()
+        )
+      )
+      .subscribe(dados => dados ? this.populaDadosForm(dados) : {} );
+
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
   }
 

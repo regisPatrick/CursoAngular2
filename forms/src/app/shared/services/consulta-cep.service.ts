@@ -11,6 +11,9 @@ export class ConsultaCepService {
   constructor(private http: HttpClient) { }
 
   consultaCEP(cep: string) {
+
+    console.log(cep);
+
     // Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
     // Verifica se campo cep possui valor informado.
