@@ -10,6 +10,7 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { FormValidations } from '../shared/form-validations';
 import { VerificaEmailService } from './services/verifica-email.service';
 import { BaseFormComponent } from './../shared/base-form/base-form.component';
+import { Cidade } from './../shared/models/cidade';
 
 @Component({
   selector: 'app-data-form',
@@ -19,8 +20,9 @@ import { BaseFormComponent } from './../shared/base-form/base-form.component';
 export class DataFormComponent extends BaseFormComponent implements OnInit {
   
   // formulario: FormGroup;
-  // estados: EstadoBr[];
-  estados: Observable<EstadoBr[]>;
+  estados: EstadoBr[];
+  cidades: Cidade[];
+  // estados: Observable<EstadoBr[]>;
   cargos: any[];
   tecnologias: any[];
   newsletterOp: any[];
@@ -40,7 +42,10 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
 
     // this.verificaEmailService.verificarEmail('email@email.com').subscribe();
 
-    this.estados = this.dropdownService.getEstadosBR();
+    // this.estados = this.dropdownService.getEstadosBR();
+
+    this.dropdownService.getEstadosBR()
+      .subscribe(dados => this.estados = dados);
 
     this.cargos = this.dropdownService.getCargos();
 
@@ -93,6 +98,18 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
         )
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {} );
+
+      this.formulario.get('endereco.estado').valueChanges
+        .pipe(
+          tap(estado => console.log('Novo estado: ', estado)),
+          map(estado => this.estados.filter(e => e.sigla === estado)),
+          map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+          switchMap((estadoId: number) => this.dropdownService.getCidades(estadoId)),
+          tap(console.log)
+        )
+        .subscribe(cidades => this.cidades = cidades);
+      
+      // this.dropdownService.getCidades(8).subscribe(console.log);
 
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") Usar expressão regular para validar email caso esteja utilizando Angular 2
   }
