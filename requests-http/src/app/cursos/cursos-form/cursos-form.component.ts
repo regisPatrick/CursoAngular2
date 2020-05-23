@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,11 +9,34 @@ import { Component, OnInit } from '@angular/core';
 export class CursosFormComponent implements OnInit {
 
   form: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    
+
+    this.form = this.fb.group({
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]]
+    });
+
+  }
+
+  onSubmit(){
+    this.submitted = true;
+    console.log(this.form.value);
+    if(this.form.valid) {
+      console.log('submit');
+    }
+  }
+
+  hasError(field: string) {
+    return this.form.get(field).errors;
+  }
+  
+  onCancel(){
+    this.submitted = false;
+    this.form.reset();
+    // console.log('onCancel');
   }
 
 }
