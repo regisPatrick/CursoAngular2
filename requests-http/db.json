@@ -27,6 +27,22 @@
     {
       "id": 7,
       "nome": "Material 4"
+    },
+    {
+      "nome": "Angular Material 5",
+      "id": 8
+    },
+    {
+      "nome": "Angular Material 6",
+      "id": 9
+    },
+    {
+      "nome": "Angular Material 7",
+      "id": 10
+    },
+    {
+      "nome": "Angular Material 8",
+      "id": 11
     }
   ]
 }
