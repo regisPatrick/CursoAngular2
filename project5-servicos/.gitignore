@@ -44,3 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Projeto Angular
+node_modules
+
+#Projeto Angular
+node_modules
