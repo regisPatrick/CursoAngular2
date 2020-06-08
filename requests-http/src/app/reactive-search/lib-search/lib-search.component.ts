@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -28,10 +28,14 @@ export class LibSearchComponent implements OnInit {
     let value = this.queryField.value;
     if (value && (value = value.trim()) !== '') {
       
-      const params = {
+      const params_ = {
         search: value,
         fields: fields
       };
+
+      let params = new HttpParams();
+      params = params.set('search', value);
+      params = params.set('fields', fields);
       
       this.results$ = this.http
         // .get(this.SEARCH_URL + '?fields=' + fields + '&search=' + value)
