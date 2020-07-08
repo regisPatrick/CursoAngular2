@@ -124,5 +124,11 @@
   "defaultProject": "project4-diretivas",
   "cli": {
     "analytics": "089fd8e5-2918-46b0-b4a5-3e9d9860c716"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss",
+      "style": "scss"
+    }
   }
 }
