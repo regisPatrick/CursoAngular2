@@ -5,7 +5,7 @@
 <p>Páginas: {{ livro.numeroPaginas | number }}</p>
 <p>Preço: {{ livro.preco | currency:'BRL' }}</p>
 <!-- <p>Preço: {{ livro.preco | currency:'BRL':true }}</p> --> <!-- No Angular 9 nao precisa do true pois ja aparece o simbolo -->
-<p>Data Lançamento: {{ livro.dataLancamento | date:'dd-MMM-yyyy' }}</p>
+<p>Data Lançamento: {{ livro.dataLancamento | date }}</p>  <!-- date:'dd-MMM-yyyy' -->
 <p>Url: {{ livro.url }}</p>
 <br>
 <p>Livro: {{ livro | json }}</p>
