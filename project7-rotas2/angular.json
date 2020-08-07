@@ -122,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "project7-rotas2"
+    }
+  },
+  "defaultProject": "project7-rotas2",
+  "cli": {
+    "analytics": "cc1806f6-9691-4637-a92b-c1bf5005aa3a"
+  }
 }
