@@ -15,5 +15,18 @@ export class AlunosService {
     return this.alunos;
   }
 
+  getAluno(id: number){
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.alunos.length; i++){
+      // tslint:disable-next-line: prefer-const
+      let aluno = this.alunos[i];
+      // tslint:disable-next-line: triple-equals
+      if (aluno.id == id){
+        return aluno;
+      }
+    }
+    return null;
+  }
+
   constructor() { }
 }
