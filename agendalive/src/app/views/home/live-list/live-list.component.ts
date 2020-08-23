@@ -13,6 +13,10 @@ export class LiveListComponent implements OnInit {
 
   livesPrevious: Live[];
   livesNext: Live[];
+  // tslint:disable-next-line: no-inferrable-types
+  next: boolean = false;
+  // tslint:disable-next-line: no-inferrable-types
+  previous: boolean = false;
 
   constructor(
     private liveService: LiveService,
@@ -30,6 +34,7 @@ export class LiveListComponent implements OnInit {
       this.livesPrevious.forEach(live => {
         live.urlsafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
       });
+      this.previous = true;
     });
 
     this.liveService.getLivesWithFlag('next').subscribe(data => {
@@ -38,6 +43,7 @@ export class LiveListComponent implements OnInit {
       this.livesNext.forEach(live => {
         live.urlsafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
       });
+      this.next = true;
     });
   }
 
