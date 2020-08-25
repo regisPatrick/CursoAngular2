@@ -2,14 +2,21 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
+import { Aluno } from '../aluno';
+import { AlunosService } from './../alunos.service';
+
 @Injectable()
-class TeamResolver implements Resolve<Team> {
-  constructor(private backend: Backend) {}
+class AlunoDetalheResolver implements Resolve<Aluno> {
+  constructor(private alunosService: AlunosService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.backend.fetchTeam(route.params.id);
+
+    // tslint:disable-next-line: prefer-const
+    let id = route.params['id'];
+
+    return this.alunosService.getAluno(id);
   }
 }
