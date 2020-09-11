@@ -61,7 +61,7 @@
       </div>
       <div [ngClass]="aplicaCssErro(cep)">
         <input type="text" class="form-control" id="cep"
-        name="cep" ngModel required #cep="ngModel"/>
+        name="cep" ngModel required #cep="ngModel" (blur)="consultaCEP($event.target.value)"/>
         <!-- <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
         *ngIf="!cep.valid && cep.touched"></span>
         <span id="cep" class="sr-only"
