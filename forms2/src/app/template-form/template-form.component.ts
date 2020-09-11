@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-template-form',
@@ -48,7 +49,8 @@ export class TemplateFormComponent implements OnInit {
       let validacep = /^[0-9]{8}$/;
       // Valida o formato do CEP.
       if (validacep.test(cep)) {
-        this.http.get(`https://viacep.com.br/ws/${cep}/json`);
+        this.http.get(`https://viacep.com.br/ws/${cep}/json`)
+            .subscribe(data => console.log(data));
       }
     }
   }
