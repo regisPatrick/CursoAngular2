@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class DataFormComponent implements OnInit {
 
-  formulario: FormGroup
+  formulario: FormGroup;
 
   constructor() { }
 
