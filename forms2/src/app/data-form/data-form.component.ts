@@ -59,6 +59,10 @@ export class DataFormComponent implements OnInit {
     return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
   }
 
+  verificaEmailInvalido(){
+    if()
+  }
+
   aplicaCssErro(campo){
     return {
       'has-error': this.verificaValidTouched(campo),
