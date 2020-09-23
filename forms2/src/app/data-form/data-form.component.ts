@@ -60,7 +60,12 @@ export class DataFormComponent implements OnInit {
   }
 
   verificaEmailInvalido(){
-    if()
+    // tslint:disable-next-line: prefer-const
+    let campoEmail = this.formulario.get('email');
+    if (campoEmail.errors){
+      // tslint:disable-next-line: no-string-literal
+      return campoEmail.errors['email'] && campoEmail.touched;
+    }
   }
 
   aplicaCssErro(campo){
