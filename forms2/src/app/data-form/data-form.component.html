@@ -45,7 +45,8 @@
           <label for="cep" class="control-label">CEP</label>
         </div>
         <div [ngClass]="aplicaCssErro('endereco.cep')">
-          <input type="text" class="form-control" id="cep" formControlName="cep"/>
+          <input type="text" class="form-control" id="cep" formControlName="cep"
+          (blur)="consultaCEP()"/>
 
           <app-campo-control-erro
             [mostrarErro]="verificaValidTouched('endereco.cep')"
