@@ -69,7 +69,19 @@ export class DataFormComponent implements OnInit {
 
     } else {
       console.log('formulário inválido');
+      this.verificaValidacoesForm(this.formulario);
     }
+  }
+
+  verificaValidacoesForm(formGroup: FormGroup){
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo);
+      const controle = formGroup.get(campo);
+      controle.markAsTouched();
+      if (controle instanceof FormGroup){
+        this.verificaValidacoesForm(controle);
+      }
+    });
   }
 
   resetar(){
