@@ -54,7 +54,9 @@ export class DataFormComponent implements OnInit {
 
     console.log(this.formulario);
 
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+    if (this.formulario.valid){
+
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
       .pipe(
         map(res => res))
       .subscribe(dados => {
@@ -64,6 +66,10 @@ export class DataFormComponent implements OnInit {
         // this.resetar();
       },
       (error: any) => alert('erro'));
+
+    } else {
+      console.log('formulário inválido');
+    }
   }
 
   resetar(){
