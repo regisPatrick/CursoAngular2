@@ -14,7 +14,7 @@ import { DropdownService } from './../shared/services/dropdown.service';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
-  estados: EstadoBr;
+  estados: EstadoBr[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,10 +23,11 @@ export class DataFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.dropdownService.getEstadosBr()
-      .subscribe(dados => {this.estados = dados; console.log(dados); });
-
+    this.estados = [];
+    this.dropdownService.getEstadosBr().subscribe((res: EstadoBr) => {
+    this.estados.push(res);
+    console.log(res);
+  });
     /*this.formulario = new FormGroup({
       nome: new FormControl(null),
       email: new FormControl(null),
