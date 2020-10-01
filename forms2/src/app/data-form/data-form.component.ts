@@ -119,27 +119,42 @@ export class DataFormComponent implements OnInit {
     };
   }
 
+  // consultaCEP(){
+
+  //   let cep = this.formulario.get('endereco.cep').value;
+  //   // console.log(cep);
+
+  //   // Nova variável "cep" somente com dígitos.
+  //   cep = cep.replace(/\D/g, '');
+  //   // Verifica se campo cep possui valor informado.
+  //   // tslint:disable-next-line: triple-equals
+  //   if (cep != ''){
+  //     // Expressão regular para validar o CEP.
+  //     // tslint:disable-next-line: prefer-const
+  //     let validacep = /^[0-9]{8}$/;
+  //     // Valida o formato do CEP.
+  //     if (validacep.test(cep)) {
+
+  //       this.resetaDadosForm();
+
+  //       this.http.get(`https://viacep.com.br/ws/${cep}/json`)
+  //           .subscribe(dados => this.populaDadosForm(dados));
+  //     }
+  //   }
+  // }
+
   consultaCEP(){
 
     let cep = this.formulario.get('endereco.cep').value;
     // console.log(cep);
 
-    // Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-    // Verifica se campo cep possui valor informado.
-    // tslint:disable-next-line: triple-equals
-    if (cep != ''){
-      // Expressão regular para validar o CEP.
-      // tslint:disable-next-line: prefer-const
-      let validacep = /^[0-9]{8}$/;
-      // Valida o formato do CEP.
-      if (validacep.test(cep)) {
+    if (cep != null && cep !== ''){
+      this.cepService.consultaCEP(cep);
+    }
 
-        this.resetaDadosForm();
-
+    if (validacep.test(cep)) {
         this.http.get(`https://viacep.com.br/ws/${cep}/json`)
             .subscribe(dados => this.populaDadosForm(dados));
-      }
     }
   }
 
