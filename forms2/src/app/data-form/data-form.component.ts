@@ -145,16 +145,13 @@ export class DataFormComponent implements OnInit {
 
   consultaCEP(){
 
+    // tslint:disable-next-line: prefer-const
     let cep = this.formulario.get('endereco.cep').value;
     // console.log(cep);
 
     if (cep != null && cep !== ''){
-      this.cepService.consultaCEP(cep);
-    }
-
-    if (validacep.test(cep)) {
-        this.http.get(`https://viacep.com.br/ws/${cep}/json`)
-            .subscribe(dados => this.populaDadosForm(dados));
+      this.cepService.consultaCEP(cep)
+      .subscribe(dados => this.populaDadosForm(dados));
     }
   }
 
