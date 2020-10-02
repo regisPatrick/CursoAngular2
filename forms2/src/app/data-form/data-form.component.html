@@ -125,7 +125,7 @@
         </div>
         <div [ngClass]="aplicaCssErro('endereco.estado')">
           <select class="form-control" id="estado" formControlName="estado">
-            <option *ngFor="let estado of estados" >{{ estado.nome }}</option>
+            <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
           </select>
           <app-campo-control-erro
             [mostrarErro]="verificaValidTouched('endereco.estado')"
