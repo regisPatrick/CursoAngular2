@@ -124,7 +124,9 @@
           <label for="estado" class="control-label">Estado</label>
         </div>
         <div [ngClass]="aplicaCssErro('endereco.estado')">
-          <input type="text" class="form-control" id="estado" formControlName="estado"/>
+          <select class="form-control" id="estado" formControlName="estado">
+            <option></option>
+          </select>
           <app-campo-control-erro
             [mostrarErro]="verificaValidTouched('endereco.estado')"
             msgErro="Estado é obrigatório.">
