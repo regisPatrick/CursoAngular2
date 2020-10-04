@@ -138,6 +138,15 @@
 
     </div>
 
+    <div class="form-group">
+      <div class="col-md-3" [ngClass]="aplicaCssErro('cargo')">
+          <label for="cargo" class="control-label">Cargo</label>
+          <select class="form-control" id="cargo" formControlName="cargo">
+            <option *ngFor="let cargo of cargos" [value]="cargo">{{ cargo.desc }}</option>
+          </select>
+      </div>
+    </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
   <button class="btn" (click)="resetar()">Cancelar</button>
 
