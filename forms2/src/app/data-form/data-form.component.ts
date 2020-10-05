@@ -194,5 +194,9 @@ export class DataFormComponent implements OnInit {
     });
   }
 
+  setarCargo() {
+    const cargo = { nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl' };
+    this.formulario.get('cargo').setValue(cargo);
+  }
 
 }
