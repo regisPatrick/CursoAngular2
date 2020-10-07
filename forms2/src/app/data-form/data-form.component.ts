@@ -207,4 +207,8 @@ export class DataFormComponent implements OnInit {
     return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
   }
 
+  setarTecnologias(){
+    this.formulario.get('tecnologias').setValue(['java', 'javascript', 'php']);
+  }
+
 }
