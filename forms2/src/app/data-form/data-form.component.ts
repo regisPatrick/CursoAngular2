@@ -19,6 +19,7 @@ export class DataFormComponent implements OnInit {
   // estados: EstadoBr[];
   estados: Observable<EstadoBr[]>;
   cargos: any[];
+  tecnologias: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +33,8 @@ export class DataFormComponent implements OnInit {
     this.estados = this.dropdownService.getEstadosBr();
 
     this.cargos = this.dropdownService.getCargos();
+
+    this.tecnologias = this.dropdownService.getTecnologias();
 
     /*this.dropdownService.getEstadosBr().subscribe(dados => {
     this.estados = dados;
@@ -61,7 +64,8 @@ export class DataFormComponent implements OnInit {
         estado: [null, Validators.required]
       }),
 
-      cargo: [null]
+      cargo: [null],
+      tecnologias: [null]
     });
 
     // tslint:disable-next-line: max-line-length

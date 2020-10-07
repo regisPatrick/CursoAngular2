@@ -145,6 +145,13 @@
             <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
           </select>
       </div>
+
+      <div class="col-md-3" [ngClass]="aplicaCssErro('tecnologias')">
+          <label for="tecnologias" class="control-label">Tecnologias</label>
+          <select class="form-control" id="tecnologias" formControlName="tecnologias" [compareWith]="compararTecnologias">
+            <option multiple *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc }}</option>
+          </select>
+      </div>
     </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
