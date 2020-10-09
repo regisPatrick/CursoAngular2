@@ -211,8 +211,4 @@ export class DataFormComponent implements OnInit {
     this.formulario.get('tecnologias').setValue(['java', 'javascript', 'php']);
   }
 
-  setarTecnologias(){
-    this.formulario.get('tecnologias').setValue(['java', 'javascript', 'php']);
-  }
-
 }
