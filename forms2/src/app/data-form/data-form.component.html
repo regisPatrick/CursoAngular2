@@ -181,6 +181,19 @@
           </app-campo-control-erro>
         </div>
       </div>
+
+      <div class="col-md-3" [ngClass]="aplicaCssErro('termos')">
+        <div class="checkbox">
+          <label for="" class="checkbox-inline">
+            <input type="checkbox" formControlName="termos"/> Aceito os termos.
+          </label>
+          <app-campo-control-erro
+            [mostrarErro]="!formulario.get('termos').valid"
+            msgErro="Por favor, aceite os termos.">
+          </app-campo-control-erro>
+        </div>
+      </div>
+
     </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
