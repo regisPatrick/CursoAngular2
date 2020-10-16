@@ -72,7 +72,7 @@ export class DataFormComponent implements OnInit {
       tecnologias: [null],
       newsletter: ['s'],
       termos: [null, Validators.pattern('true')],
-      frameworks: [null]
+      frameworks: this.buildFrameworks()
     });
 
     // tslint:disable-next-line: max-line-length
@@ -81,13 +81,37 @@ export class DataFormComponent implements OnInit {
 
   }
 
+  buildFrameworks(){
+
+    const values = this.frameworks.map(v => new FormControl(false));
+
+    return this.formBuilder.array(values);
+
+    /* this.formBuilder.array([
+      new FormControl(false), // angular
+      new FormControl(false), // react
+      new FormControl(false), // vue
+      new FormControl(false) // sencha
+    ]); */
+  }
+
   onSubmit() {
 
     console.log(this.formulario);
 
+    let valueSubmit = Object.assign({}, this.formulario.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: valueSubmit.frameworks
+        .map((v, i) => v ? this.frameworks[i] : null)
+        .filter(v => v !== null)
+    });
+
+    console.log(valueSubmit);
+
     if (this.formulario.valid){
 
-      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
       .pipe(
         map(res => res))
       .subscribe(dados => {
