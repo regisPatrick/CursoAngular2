@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { EstadoBr } from '../shared/models/estado-br';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { Observable } from 'rxjs';
+import { FormValidations } from '../shared/form-validations';
 
 @Component({
   selector: 'app-data-form',
@@ -85,7 +86,7 @@ export class DataFormComponent implements OnInit {
 
     const values = this.frameworks.map(v => new FormControl(false));
 
-    return this.formBuilder.array(values);
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
 
     /* this.formBuilder.array([
       new FormControl(false), // angular
@@ -95,20 +96,23 @@ export class DataFormComponent implements OnInit {
     ]); */
   }
 
-  requiredMinCheckbox(min = 1){
-    const validator = (formArray: FormArray) => {
-      const values = formArray.controls;
-      let totalChecked = 0;
-      // tslint:disable-next-line: prefer-for-of
-      for (let i = 0; i < values.length; i++){
-        if (values[i].value){
-          totalChecked += 1;
-        }
-      }
-      return totalChecked >= min ? null : { required: true };
-    };
-    return validator;
-  }
+  // requiredMinCheckbox(min = 1){
+  //   const validator = (formArray: FormArray) => {
+  //     /*const values = formArray.controls;
+  //     let totalChecked = 0;
+  //     // tslint:disable-next-line: prefer-for-of
+  //     for (let i = 0; i < values.length; i++){
+  //       if (values[i].value){
+  //         totalChecked += 1;
+  //       }
+  //     }*/
+  //     const totalChecked = formArray.controls
+  //       .map(v => v.value)
+  //       .reduce((total, current) => current ? total + current : total, 0);
+  //     return totalChecked >= min ? null : { required: true };
+  //   };
+  //   return validator;
+  // }
 
   onSubmit() {
 
