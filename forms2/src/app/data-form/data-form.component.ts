@@ -105,6 +105,7 @@ export class DataFormComponent implements OnInit {
           totalChecked += 1;
         }
       }
+      return totalChecked >= min ? null : { required: true };
     };
     return validator;
   }
