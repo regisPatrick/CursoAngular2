@@ -97,7 +97,12 @@ export class DataFormComponent implements OnInit {
 
   requiredMinCheckbox(min = 1){
     const validator = (formArray: FormArray) => {
+      const values = formArray.controls;
 
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < values.length; i++){
+
+      }
     };
     return validator;
   }
