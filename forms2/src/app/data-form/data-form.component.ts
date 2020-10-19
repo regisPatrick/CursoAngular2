@@ -1,7 +1,7 @@
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
 import { EstadoBr } from '../shared/models/estado-br';
@@ -93,6 +93,13 @@ export class DataFormComponent implements OnInit {
       new FormControl(false), // vue
       new FormControl(false) // sencha
     ]); */
+  }
+
+  requiredMinCheckbox(min = 1){
+    const validator = (formArray: FormArray) => {
+
+    };
+    return validator;
   }
 
   onSubmit() {
