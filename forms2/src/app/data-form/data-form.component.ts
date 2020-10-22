@@ -166,6 +166,13 @@ export class DataFormComponent implements OnInit {
     return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
   }
 
+  verificaRequired(campo: string){
+    return(
+      this.formulario.get(campo).hasError('required') &&
+      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+    );
+  }
+
   verificaEmailInvalido(){
     // tslint:disable-next-line: prefer-const
     let campoEmail = this.formulario.get('email');
