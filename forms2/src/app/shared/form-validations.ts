@@ -1,4 +1,4 @@
-import { FormArray } from '@angular/forms';
+import { FormArray, FormControl } from '@angular/forms';
 
 export class FormValidations {
 
@@ -18,6 +18,10 @@ export class FormValidations {
       return totalChecked >= min ? null : { required: true };
     };
     return validator;
+  }
+
+  static cepValidator(control: FormControl){
+    return null;
   }
 
 }
