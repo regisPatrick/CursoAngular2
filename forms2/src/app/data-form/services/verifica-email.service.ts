@@ -14,6 +14,7 @@ verificarEmail(email: string) {
     .pipe(
       map((dados: { emails: any[]}) => dados.emails),
       tap(console.log)
+      map((dados) => )
     );
 }
 
