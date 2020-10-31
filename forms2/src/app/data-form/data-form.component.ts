@@ -35,7 +35,7 @@ export class DataFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.verificaEmailService.verificarEmail('').subscribe();
+    // this.verificaEmailService.verificarEmail('email@email.com').subscribe();
 
     this.estados = this.dropdownService.getEstadosBr();
 
@@ -60,7 +60,7 @@ export class DataFormComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       confirmarEmail: [null, [FormValidations.equalsTo('email')]],
 
       endereco: this.formBuilder.group({
@@ -271,6 +271,13 @@ export class DataFormComponent implements OnInit {
 
   setarTecnologias(){
     this.formulario.get('tecnologias').setValue(['java', 'javascript', 'php']);
+  }
+
+  validarEmail(formControl: FormControl) {
+    return this.verificaEmailService.verificarEmail(formControl.value)
+      .pipe(
+        map(emailExiste => emailExiste ? { emailInvalido: true } : null)
+      );
   }
 
 }

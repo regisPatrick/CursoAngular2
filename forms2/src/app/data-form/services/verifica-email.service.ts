@@ -13,8 +13,11 @@ verificarEmail(email: string) {
   return this.http.get('assets/dados/verificarEmail.json')
     .pipe(
       map((dados: { emails: any[]}) => dados.emails),
-      tap(console.log)
-      map((dados: {email}[]) => )
+      // tap(console.log),
+      map((dados: {email: string}[]) => dados.filter(v => v.email === email)),
+      // tap(console.log),
+      map((dados: any[]) => dados.length > 0 )
+      // tap(console.log)
     );
 }
 
