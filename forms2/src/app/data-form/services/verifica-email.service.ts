@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ constructor(private http: HttpClient) { }
 verificarEmail(email: string) {
   return this.http.get('assets/dados/verificarEmail.json')
     .pipe(
+      delay(2000),
       map((dados: { emails: any[]}) => dados.emails),
       // tap(console.log),
       map((dados: {email: string}[]) => dados.filter(v => v.email === email)),
