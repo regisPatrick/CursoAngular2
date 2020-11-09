@@ -1,3 +1,7 @@
-<p>
-  error-msg works!
-</p>
+<div *ngIf="mostrarErro">
+  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  <span id="nome" class="sr-only">(error)</span>
+  <div class="alert alert-danger errorDiv" role="alert">
+    {{ msgErro }}
+  </div>
+</div>

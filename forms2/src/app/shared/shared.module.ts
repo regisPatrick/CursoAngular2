@@ -18,7 +18,8 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
   ],
   exports: [
     FormDebugComponent,
-    CampoControlErroComponent
+    CampoControlErroComponent,
+    ErrorMsgComponent
   ]// ,
   // providers: [DropdownService]
 })
