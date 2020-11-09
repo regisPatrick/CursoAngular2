@@ -10,7 +10,7 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
   declarations: [
     FormDebugComponent,
     CampoControlErroComponent,
-    ErrorMsgComponent
+    ErrorMsgComponentsdd
   ],
   imports: [
     CommonModule,
