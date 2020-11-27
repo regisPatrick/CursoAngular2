@@ -57,11 +57,17 @@ export class FormValidations {
     return validator;
   }
 
-  static getErrorMsg(fieldName: string, validatorName: string){
+  static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any){
     const config = {
       // tslint:disable-next-line: object-literal-key-quotes
-      'required': `${fieldName} é obrigatório.`
+      'required': `${fieldName} é obrigatório.`,
+      minlength: `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
+      maxlength: `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
+      // tslint:disable-next-line: object-literal-key-quotes
+      'cepInvalido': 'CEP Inválido.'
     };
+
+    return config[validatorName];
   }
 
 }
