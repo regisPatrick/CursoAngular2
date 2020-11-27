@@ -20,7 +20,10 @@ export class ErrorMsgComponent implements OnInit {
   get errorMessage() {
 
     for (const propertyName in this.control.errors) {
+      if (this.control.errors.hasOwnProperty(propertyName) &&
+        this.control.touched) {
 
+        }
     }
 
     return null;
