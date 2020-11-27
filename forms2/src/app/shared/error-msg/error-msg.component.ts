@@ -10,8 +10,9 @@ import { FormValidations } from './../form-validations';
 })
 export class ErrorMsgComponent implements OnInit {
 
-  @Input() mostrarErro: boolean;
-  @Input() msgErro: string;
+  // @Input() mostrarErro: boolean;
+  // @Input() msgErro: string;
+
   @Input() control: FormControl;
   @Input() label: string;
 
