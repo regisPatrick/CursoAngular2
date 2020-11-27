@@ -57,4 +57,11 @@ export class FormValidations {
     return validator;
   }
 
+  static getErrorMsg(fieldName: string, validatorName: string){
+    const config = {
+      // tslint:disable-next-line: object-literal-key-quotes
+      'required': `${fieldName} é obrigatório.`
+    };
+  }
+
 }

@@ -22,7 +22,7 @@ export class ErrorMsgComponent implements OnInit {
     for (const propertyName in this.control.errors) {
       if (this.control.errors.hasOwnProperty(propertyName) &&
         this.control.touched) {
-
+          // TODO
         }
     }
 
