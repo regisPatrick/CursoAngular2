@@ -2,11 +2,11 @@ import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
 import { EstadoBr } from '../shared/models/estado-br';
 import { DropdownService } from './../shared/services/dropdown.service';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { VerificaEmailService } from './services/verifica-email.service';
 
@@ -81,8 +81,17 @@ export class DataFormComponent implements OnInit {
       frameworks: this.buildFrameworks()
     });
 
-    this.formulario.get('endereco.cep').valueChanges
-      .subscribe(value => console.log('valor CEP:', value));
+    this.formulario.get('endereco.cep').statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap(value => console.log('valor CEP:', value)),
+        switchMap(status => status === 'VALID' ?
+          this.cepService.consultaCEP(this.formulario.get('endereco.cep').value)
+          // tslint:disable-next-line: deprecation
+          : empty()
+        )
+      )
+      .subscribe(dados => dados ? this.populaDadosForm(dados) : {} ) ;
 
     // tslint:disable-next-line: max-line-length
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");

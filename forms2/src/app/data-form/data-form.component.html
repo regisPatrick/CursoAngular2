@@ -75,13 +75,20 @@
 
     <div class="form-group" >
 
-      <div class="col-md-3" [ngClass]="aplicaCssErro('endereco.cep')">
+      <!-- <div class="col-md-3" [ngClass]="aplicaCssErro('endereco.cep')">
         <div>
           <label for="cep" class="control-label">CEP</label>
         </div>
         <div [ngClass]="aplicaCssErro('endereco.cep')">
           <input type="text" class="form-control" id="cep" formControlName="cep"
-          (blur)="consultaCEP()"/>
+          (blur)="consultaCEP()"/> -->
+
+          <div class="col-md-3" [ngClass]="aplicaCssErro('endereco.cep')">
+            <div>
+              <label for="cep" class="control-label">CEP</label>
+            </div>
+            <div [ngClass]="aplicaCssErro('endereco.cep')">
+              <input type="text" class="form-control" id="cep" formControlName="cep"/>
 
           <!-- <app-campo-control-erro
             [mostrarErro]="verificaValidTouched('endereco.cep')"
