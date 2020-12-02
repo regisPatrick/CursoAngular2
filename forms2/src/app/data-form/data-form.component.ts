@@ -81,6 +81,8 @@ export class DataFormComponent implements OnInit {
       frameworks: this.buildFrameworks()
     });
 
+    // this.formulario.status
+
     // tslint:disable-next-line: max-line-length
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
     // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
