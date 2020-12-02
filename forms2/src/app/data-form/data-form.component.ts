@@ -81,7 +81,8 @@ export class DataFormComponent implements OnInit {
       frameworks: this.buildFrameworks()
     });
 
-    // this.formulario.status
+    this.formulario.get('endereco.cep').valueChanges
+      .subscribe();
 
     // tslint:disable-next-line: max-line-length
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
