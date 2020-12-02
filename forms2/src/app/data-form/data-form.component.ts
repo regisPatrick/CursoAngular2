@@ -82,7 +82,7 @@ export class DataFormComponent implements OnInit {
     });
 
     this.formulario.get('endereco.cep').valueChanges
-      .subscribe();
+      .subscribe(value => console.log('valor CEP:', value));
 
     // tslint:disable-next-line: max-line-length
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
