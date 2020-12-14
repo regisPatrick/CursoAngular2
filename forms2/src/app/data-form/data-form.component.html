@@ -2,7 +2,7 @@
 
     <app-input-field formControlName="nome"
       [classeCss]="aplicaCssErro('nome')"
-      id="nome"
+      id="nome" label="Nome" [control]="formulario.get('nome')"
     ></app-input-field>
 
     <div class="form-group" [ngClass]="aplicaCssErro('nome')">
