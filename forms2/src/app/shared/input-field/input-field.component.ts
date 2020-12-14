@@ -14,6 +14,19 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Input() type = 'text';
   @Input() control;
 
+  private innerValue: any;
+
+  get value() {
+    return this.innerValue;
+  }
+
+  set value(v: any) {
+    if(v !== this.innerValue){
+      this.innerValue = v;
+      // TODO
+    }
+  }
+
   constructor() { }
 
   ngOnInit() {
