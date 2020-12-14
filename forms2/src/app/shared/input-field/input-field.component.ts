@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.css']
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit, ControlValueAccessor {
 
   @Input() classeCss;
   @Input() id: string;
@@ -16,6 +17,19 @@ export class InputFieldComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  writeValue(obj: any): void {
+    throw new Error('Method not implemented.');
+  }
+  registerOnChange(fn: any): void {
+    throw new Error('Method not implemented.');
+  }
+  registerOnTouched(fn: any): void {
+    throw new Error('Method not implemented.');
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    throw new Error('Method not implemented.');
   }
 
 }

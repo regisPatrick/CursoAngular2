@@ -1,6 +1,6 @@
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
-    <app-input-field formControlName="nome"
+    <app-input-field class="col-sm-12" formControlName="nome"
       [classeCss]="aplicaCssErro('nome')"
       id="nome" label="Nome" [control]="formulario.get('nome')"
     ></app-input-field>
