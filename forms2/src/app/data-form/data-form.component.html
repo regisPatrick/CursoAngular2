@@ -5,7 +5,7 @@
       id="nome" label="Nome" [control]="formulario.get('nome')"
     ></app-input-field>
 
-    <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+    <!-- <div class="form-group" [ngClass]="aplicaCssErro('nome')">
 
     <div class="col-sm-12">
       <label for="nome" class="control-label">Nome</label>
@@ -16,7 +16,7 @@
       id="nome" placeholder="Nome" />
 
       <app-error-msg [control]="formulario.get('nome')" label="Nome">
-      </app-error-msg>
+      </app-error-msg> -->
 
       <!-- <app-error-msg
         [mostrarErro]="verificaValidTouched('nome')"
@@ -28,9 +28,9 @@
         msgErro="Nome é obrigatório.">
       </app-campo-control-erro> -->
       <!-- [mostrarErro]="!formulario.controls['nome'].valid && formulario.get('nome').touched" -->
-    </div>
+    <!-- </div>
 
-  </div>
+  </div> -->
 
   <div class="form-group" [ngClass]="aplicaCssErro('email')">
   <div class="col-sm-12">
