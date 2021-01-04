@@ -70,4 +70,8 @@ export abstract class BaseFormComponent implements OnInit {
     };
   }
 
+  getCampo(campo: string) {
+    return this.formulario.get(campo);
+  }
+
 }
