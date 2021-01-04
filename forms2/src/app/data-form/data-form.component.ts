@@ -159,37 +159,6 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
       (error: any) => alert('erro'));
   }
 
-  resetar(){
-    this.formulario.reset();
-  }
-
-  verificaValidTouched(campo: string){
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
-  }
-
-  verificaRequired(campo: string){
-    return(
-      this.formulario.get(campo).hasError('required') &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
-    );
-  }
-
-  verificaEmailInvalido(){
-    // tslint:disable-next-line: prefer-const
-    let campoEmail = this.formulario.get('email');
-    if (campoEmail.errors){
-      // tslint:disable-next-line: no-string-literal
-      return campoEmail.errors['email'] && campoEmail.touched;
-    }
-  }
-
-  aplicaCssErro(campo: string){
-    return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo)
-    };
-  }
-
   // consultaCEP(){
 
   //   let cep = this.formulario.get('endereco.cep').value;
