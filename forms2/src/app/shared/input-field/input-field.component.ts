@@ -29,7 +29,7 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   }
 
   set value(v: any) {
-    if(v !== this.innerValue){
+    if (v !== this.innerValue){
       this.innerValue = v;
       this.onChangeCb(v);
     }
