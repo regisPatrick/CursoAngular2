@@ -134,8 +134,7 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
   //   return validator;
   // }
 
-  onSubmit() {
-
+  submit() {
     console.log(this.formulario);
 
     let valueSubmit = Object.assign({}, this.formulario.value);
@@ -148,9 +147,7 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
 
     console.log(valueSubmit);
 
-    if (this.formulario.valid){
-
-      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
+    this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
       .pipe(
         map(res => res))
       .subscribe(dados => {
@@ -160,22 +157,6 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
         // this.resetar();
       },
       (error: any) => alert('erro'));
-
-    } else {
-      console.log('formulário inválido');
-      this.verificaValidacoesForm(this.formulario);
-    }
-  }
-
-  verificaValidacoesForm(formGroup: FormGroup){
-    Object.keys(formGroup.controls).forEach(campo => {
-      console.log(campo);
-      const controle = formGroup.get(campo);
-      controle.markAsTouched();
-      if (controle instanceof FormGroup){
-        this.verificaValidacoesForm(controle);
-      }
-    });
   }
 
   resetar(){
