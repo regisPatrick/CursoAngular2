@@ -96,6 +96,9 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {} ) ;
 
+      // tslint:disable-next-line: align
+      this.dropdownService.getCidades(8).subscribe(console.log);
+
     // tslint:disable-next-line: max-line-length
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
     // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]

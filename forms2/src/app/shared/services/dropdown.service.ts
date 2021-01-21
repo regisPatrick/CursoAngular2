@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { EstadoBr } from './../models/estado-br';
+import { Cidade } from '../models/cidade';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class DropdownService {
       // .pipe(
       //   map((res: Response) => res.json())
       // );
+  }
+
+  getCidades(idEstado: number) {
+    return this.http.get<Cidade[]>('assets/dados/cidades.json');
   }
 
   getCargos(){
