@@ -20,7 +20,11 @@ export class DropdownService {
   }
 
   getCidades(idEstado: number) {
-    return this.http.get<Cidade[]>('assets/dados/cidades.json');
+    return this.http.get<Cidade[]>('assets/dados/cidades.json')
+    .pipe(
+      // tslint:disable-next-line: triple-equals
+      map((cidades: Cidade[]) => cidades.filter(c => c.estado == idEstado))
+    );
   }
 
   getCargos(){
