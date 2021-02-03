@@ -19,8 +19,8 @@ import { BaseFormComponent } from './../shared/base-form/base-form.component';
 export class DataFormComponent extends BaseFormComponent implements OnInit {
 
   // formulario: FormGroup;
-  // estados: EstadoBr[];
-  estados: Observable<EstadoBr[]>;
+  estados: EstadoBr[];
+  // estados: Observable<EstadoBr[]>;
   cargos: any[];
   tecnologias: any[];
   newsletterOp: any[];
@@ -40,7 +40,9 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
 
     // this.verificaEmailService.verificarEmail('email@email.com').subscribe();
 
-    this.estados = this.dropdownService.getEstadosBr();
+    // this.estados = this.dropdownService.getEstadosBr();
+    this.dropdownService.getEstadosBr()
+      .subscribe(dados => this.estados = dados);
 
     this.cargos = this.dropdownService.getCargos();
 
@@ -96,8 +98,14 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {} ) ;
 
+    this.formulario.get('endereco.estado').valueChanges
+        .pipe(
+          tap(estado => console.log('Novo estado: ', estado))
+        )
+        .subscribe();
+
       // tslint:disable-next-line: align
-      this.dropdownService.getCidades(8).subscribe(console.log);
+      // this.dropdownService.getCidades(8).subscribe(console.log);
 
     // tslint:disable-next-line: max-line-length
     // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
