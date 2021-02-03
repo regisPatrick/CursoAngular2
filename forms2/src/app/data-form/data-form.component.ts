@@ -10,6 +10,7 @@ import { empty, Observable } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { VerificaEmailService } from './services/verifica-email.service';
 import { BaseFormComponent } from './../shared/base-form/base-form.component';
+import { Cidade } from '../shared/models/cidade';
 
 @Component({
   selector: 'app-data-form',
@@ -20,6 +21,7 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
 
   // formulario: FormGroup;
   estados: EstadoBr[];
+  cidades: Cidade[];
   // estados: Observable<EstadoBr[]>;
   cargos: any[];
   tecnologias: any[];
@@ -100,9 +102,14 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
 
     this.formulario.get('endereco.estado').valueChanges
         .pipe(
-          tap(estado => console.log('Novo estado: ', estado))
+          tap(estado => console.log('Novo estado: ', estado)),
+          map(estado => this.estados.filter(e => e.sigla === estado)),
+          // tslint:disable-next-line: deprecation
+          map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+          switchMap((estadoId: number) => this.dropdownService.getCidades(estadoId)),
+          tap(console.log)
         )
-        .subscribe();
+        .subscribe(cidades => this.cidades = cidades);
 
       // tslint:disable-next-line: align
       // this.dropdownService.getCidades(8).subscribe(console.log);
