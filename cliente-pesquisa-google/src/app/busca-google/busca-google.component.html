@@ -7,10 +7,13 @@
   </div>
   <div class="col-md-12">
     <input type="text" class="form-control" name="busca"
-    id="busca" placeholder="Digite a palavra a ser pesquisada no google"/>
+    id="busca" placeholder="Digite a palavra a ser pesquisada no google" #busca/>
   </div>
   <br>
   <div class="col-md-12">
-    <button type="submit" class="btn btn-info" >Pesquisar</button>
-  </div>  
+    <button class="btn btn-info" (click)="getSearch(busca.value)">Pesquisar</button>
+  </div>
+  <div>
+    {{ resultadoPesquisa }}
+  </div>
 </div>
