@@ -13,7 +13,16 @@
   <div class="col-md-12">
     <button class="btn btn-info" (click)="getSearch(busca.value)">Pesquisar</button>
   </div>
-  <div>
-    {{ resultadoPesquisa }}
-  </div>
+</div>
+</div>
+<div class="alert alert-danger msgErro" *ngIf="campoVazio == true" >
+  {{ msgErro }}
+</div>
+<div class="resultPesquisa" *ngIf="(resultadoPesquisa != undefined || resultadoPesquisa != null) && campoVazio == false">
+  <ul>
+    <ol *ngFor="let pesquisa of resultadoPesquisa">
+      {{ pesquisa.titulo }} <br>
+      <a href="{{ pesquisa.link }}" target="_blank">{{ pesquisa.link }}</a> <br><br>
+    </ol>
+  </ul>
 </div>

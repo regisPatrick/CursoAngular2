@@ -11,6 +11,8 @@ import { BuscaSiteGoogleService } from './../service/busca-site-google.service';
 export class BuscaGoogleComponent implements OnInit {
 
   resultadoPesquisa: any;
+  msgErro = 'É necessário informar uma palavra para a busca.';
+  campoVazio = false;
 
   constructor(
     private buscaSiteGoogleService: BuscaSiteGoogleService
@@ -22,12 +24,14 @@ export class BuscaGoogleComponent implements OnInit {
   getSearch(query: string){
     // tslint:disable-next-line: triple-equals
     if (query == null || query == undefined || query == ''){
-      throw new Error('É necessário informar uma palavra para a busca.');
+      this.campoVazio = true;
+      throw new Error(this.msgErro);
     }
     // tslint:disable-next-line: deprecation
     this.buscaSiteGoogleService.getSearch(query).subscribe(data => {
       this.resultadoPesquisa = data;
       console.log(this.resultadoPesquisa);
+      this.campoVazio = false;
     });
 
   }

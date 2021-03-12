@@ -19,3 +19,20 @@
   font-weight: bold;
   color: blue;
 }
+
+.resultPesquisa{
+  margin-top: 20px;
+  padding-top: 20px;
+  text-align: left;
+  margin-left: 320px;
+  margin-right: 320px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+}
+
+.msgErro{
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 5px;
+  margin-left: 320px;
+  margin-right: 320px;
+}
