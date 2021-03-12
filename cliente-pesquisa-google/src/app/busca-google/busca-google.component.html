@@ -22,7 +22,7 @@
   <ul>
     <ol *ngFor="let pesquisa of resultadoPesquisa">
       {{ pesquisa.titulo }} <br>
-      <a href="{{ pesquisa.link }}" target="_blank">{{ pesquisa.link }}</a> <br><br>
+      <a href="https://{{ pesquisa.link }}" rel="noopener" target="_blank">{{ pesquisa.link }}</a> <br><br>
     </ol>
   </ul>
 </div>
